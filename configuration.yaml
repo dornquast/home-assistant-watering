@@ -1,0 +1,41 @@
+###
+# This is NOT a full configuration - this is a subset of what I use to support the other files for watering.
+# You would need to merge the portions that you desire into your configuration
+# These are all relevent to my watering system
+###
+logger:
+  default: info
+  logs:
+    homeassistant.components.rfxtrx: info #Set to "debug" to see 433mhz devices reporting data in your logs
+    homeassistant.components.system_log.external: info #for my own custom logging actions.  I run at info.
+
+# rfxtrx is super chatty - my database was filling up so I exclude those entites from recorder    
+recorder:
+  exclude:
+    domains:
+      - zwave
+      - sun
+      - binary_sensor
+      - persistent_notification
+    entities:
+      - sensor.time_date #no reason to record date/time changes.
+      - sensor.time
+      - sensor.date    
+      - sensor.soil_temperature #I made filter.  It stores at 7/hour.. I want 1.
+      - sensor.soil_humidity #I made filter. - it stores at 3/hour.. I want 1
+      - sensor.soil_humidity_status #I don't care, I use numeric value- reports as "unknown, normal and comfort"    
+
+# I like to be told when it waters      
+notify:
+  - name: matthew #my personal devices
+    platform: group
+    services:
+      - service: ios_mdd_iphone_x
+      - service: ios_matthews_ipad_pro
+
+rfxtrx: #so I can receive information from wireless sensors
+  device: /dev/USB433 #I use udev rules to make this device so I can unplug the RFXTRX device at will for testing.
+  debug: true
+# I break out these configuration sections to other files  
+sensor: !include sensor.yaml
+automation: !include automations.yaml
