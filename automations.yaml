@@ -1,0 +1,48 @@
+####
+# My balcony watering automation.
+# Prerequisits: 
+# * Soil sensor, in my case named "soil_humidity".  
+#   Returns number between 1 and 100 where 100 is glass of water and 1 is dead plant. :)
+# * Switch, in my case "switch.balcony_water_switch".
+#   My switch is z-wave and has been configured to automatically shut off after 10 minutes.
+#
+# Functioning:
+# The switch controlls a valve that when activated, allows water to flow to a burried soaker hose.
+# The switch has been configured to have it's own failsafe, where it shuts off automatically after 10 minutes.
+# I like this design, as server could "crash", power could go out, and so on, and nothing allows water to flow for more than 10 min
+#
+# If the soil is too dry after 1 hour (configurable below), it pushes the switch again.
+# This allows the soil to "soak" up the moisture and helps prevent overwatering.  Could easily be adjusted up or down.
+####
+- id: balcony_water
+  alias: Balcony Water
+  trigger:
+  - platform: state
+    entity_id: sensor.soil_humidity
+  condition:
+    condition: and
+    conditions:  # Is the soil too dry?  35 is my threshold - adjust accordingly for your plant.
+    - condition: numeric_state
+      entity_id: sensor.soil_humidity
+      below: 35
+    - condition: time #Is it the right time of day to run?   - I prefer to run before people are walking on street below.
+      after: 03:00:00
+      before: 07:00:00
+    - condition: template  #Do not push watering button more than once per hour (last_triggered is in seconds, so 60*60=1hr)
+      value_template: '{{ as_timestamp(now())-as_timestamp(states.automation.balcony_water.attributes.last_triggered)|int > 60*60 }}'
+  action:
+  - service: switch.turn_on #actually "push button" of watering switch, this starts switchs' timer running.
+    entity_id: switch.balcony_water_switch
+  - service: system_log.write #I like to keep track of when it runs.
+    data_template:
+      message: The soil humidity is {{states('sensor.soil_humidity')}} - time to water!
+      level: info
+  - service: notify.matthew #This notifies me personally
+    data_template:
+      title: Watering Balcony flowers in France
+      message: The soil humidity is {{states('sensor.soil_humidity')}} - time to water!
+      data:
+        subtitle: The soil humidity is {{states('sensor.soil_humidity')}}- time to
+          water!
+        push:
+          thread-id: garden
