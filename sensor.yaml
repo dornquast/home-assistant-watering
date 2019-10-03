@@ -1,0 +1,36 @@
+###
+# 
+###
+- platform: rfxtrx
+  automatic_add: false
+  devices:
+    0a520c2500010122100279: #ID of my soil sensor
+      name: Soil
+      data_type:
+        - Humidity # % value - this is what I use for fine grained control
+        - Humidity status # "normal" or "dry"  I don't actually use this
+        - Temperature
+        - Battery numeric #9 is full
+# The RFXTRX platform updates data frequently (dozens of times per hour)
+# I only want to record 1 value per hour in my database, so I use a filter to create a moving average.
+# and exlude the storage of the sensor data
+# Only store 1 temperature reading per hour.
+- platform: filter #sensor.soil_temperature
+  name: "filtered_soil_temperature"
+  entity_id: sensor.soil_temperature
+  filters:
+    - filter: time_simple_moving_average
+      window_size: 00:30
+      precision: 0
+    - filter: time_throttle # we don't want more than 1 event stored per hour
+      window_size: 00:60
+# Only store 1 humidity reading per hour.      
+- platform: filter #sensor.soil_humidity
+  name: "filtered_soil_humidity"
+  entity_id: sensor.soil_humidity
+  filters:
+    - filter: time_simple_moving_average
+      window_size: 00:60
+      precision: 0
+    - filter: time_throttle # we don't want more than 1 event stored per hour
+      window_size: 00:60
