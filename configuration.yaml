@@ -39,3 +39,10 @@ rfxtrx: #so I can receive information from wireless sensors
 # I break out these configuration sections to other files  
 sensor: !include sensor.yaml
 automation: !include automations.yaml
+
+##
+# This is included only for completeness.  The "switch" to my pump is a z-wave switch and is the entity is provided
+# by the zwave component.  Zwave is not a requirement.  But something needs to provide a "switch".
+zwave:
+  usb_path: /dev/USBzwave
+  autoheal: false #temporary
