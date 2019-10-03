@@ -1,8 +1,9 @@
 ###
-# There are two devices that are referred to here, the USB 
+# There are two devices that are referred to here:
 # 1.  A USB RFXtrx 433.92Mhz tranciever.  This receives the wireless soil sensor's data.  http://www.rfxcom.com
 # 2.  An Opus XT300 Soil Moisture Sensor.   https://www.plantcaretools.com/product/wireless-soil-moisture-sensor/
 #     You will need to change the device ID for your wireless soil sensor from "0a520c2500010122100279" to whatever yours is.
+# This configuration simply defines an entity called "sensor.soil_humidity" that we use to trigger an automation.
 ###
 - platform: rfxtrx
   automatic_add: false
