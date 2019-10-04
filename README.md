@@ -13,7 +13,7 @@ This is a starting recipe for whatever watering dish you desire.
 - Optional Logging and mobile alerts when run
 
 ## Challenges that inspired me to automate
-- [Zone 10](https://en.wikipedia.org/wiki/Hardiness_zone#Southern_Europe) garden on balcony - always sunny for weeks and then cloudy for a week.
+- [Zone 10](https://en.wikipedia.org/wiki/Hardiness_zone#Southern_Europe) garden on balcony - Full sun for weeks and then cloudy for a week.
 - Could only water before sunrise 
 - Starting plants required above average attention and care
 - Our particular plants do best when soil is allowed to dry
