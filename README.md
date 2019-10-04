@@ -24,7 +24,7 @@ This is a starting recipe for whatever watering dish you desire.
 ## How it works
 1. The soil sensor reports soil humidity level (and air temp and battery power) approximately once every 10 minutes 24 hours a day, 365 days a year.  This is done wirelessly @433.92mhz up to 100 meters.  
 2. The RFXtrx controller decodes the message and sends it via USB to the rfxtrx software component running in Home Assistant
-3. The rfxtrx component reports new the new humidity (and temperature..) state on sensors defined in configuration
+3. The rfxtrx component reports humidity (and temperature..) state updates on sensors defined in configuration
 4. The new humidity state triggers the automation in Home Assistant 
 5. The watering automation inspects the state of the soil, the time of day, the last time it watered, and decides if it's ok to "push" the water button switch which starts water flowing.
 6. The zwave switch passes current to actuated pneumatic valve to "open" (spring otherwise holds close) allowing water to flow through to a long soaker hose.
