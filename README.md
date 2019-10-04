@@ -7,7 +7,7 @@ This is a starting recipe for whatever watering dish you desire.
 ## Features
 - Inexpensive!  Even if you have to buy everything, it's less than one of those "smart" valves.
 - Fail safe - water can only flow while there is power and running software
-- Water as needed - only waters soil falls below configured humidity level
+- Water as needed - only waters soil if soil humidity falls below configured level
 - Water Only water within specific time window (user defined)
 - Water at a controlled rate / frequency (user defined)
 - Optional Logging and mobile alerts when run
