@@ -45,7 +45,7 @@ that gets a LOT of sun a good portion of the year.  It was almost impossible to 
 - [A switch](https://qubino.com/products/flush-1-relay/)
 - [Directly actuated pneumatic valve](https://www.conrad.com/p/rpe-5105-nc-230vac-22-way-directly-actuated-pneumatic-valve-230-v-ac-g-12-583032)
 - [An outdoor box](https://www.amazon.com/dp/B077Q9PBXG/ref=psdc_495308_t1_B012NJUUG4?th=1) (houses top of valve and zwave switch)
-- [Soaker hose](https://www.amazon.com/Rocky-Mountain-Goods-Soaker-Hose/dp/B0763XVJ66/ref=sr_1_6?keywords=soaker+hose+25ft&qid=1570156270&sr=8-6_
+- [Soaker hose](https://www.amazon.com/Rocky-Mountain-Goods-Soaker-Hose/dp/B0763XVJ66/)
 - [RFXtrx 433.92mhz USB HA Controller](http://www.rfxcom.com/epages/78165469.sf/en_GB/?ObjectPath=/Shops/78165469/Products/18103) 
 - [USB Z-wave controller stick](https://aeotec.com/z-wave-usb-stick/)
 
